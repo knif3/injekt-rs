@@ -20,7 +20,7 @@ tokio = { version = "1", features = ["rt", "macros"] }
 
 ## Quick Start
 
-```rust,ignore
+```rust
 use std::sync::Arc;
 
 #[derive(Clone)]
@@ -46,7 +46,7 @@ let cache: Arc<Cache> = injector.resolve();
 
 Use when all dependencies are needed at construction time. Resolve deps in `inject()`, perform async setup in `initialize()`.
 
-```rust,ignore
+```rust
 struct UserService {
     db: Arc<Database>,
     cache: Arc<Cache>,
@@ -83,7 +83,7 @@ injector.create::<UserService>().await?;
 
 Use for plugin systems, circular dependencies, or when you need to resolve dependencies dynamically.
 
-```rust,ignore
+```rust
 struct PluginManager {
     container: Arc<Container>,
     db: Lazy<Database>,
@@ -112,7 +112,7 @@ impl LazyInjectable for PluginManager {
 
 Defer resolution of individual dependencies until they're actually used.
 
-```rust,ignore
+```rust
 struct ReportGenerator {
     db: Lazy<Database>,
     cache: Lazy<Cache>,
@@ -138,7 +138,7 @@ impl ReportGenerator {
 
 ## Registration Methods
 
-```rust,ignore
+```rust
 ContainerBuilder::new()
     // Direct instance
     .register(Database { url: "...".into() })
@@ -160,7 +160,7 @@ ContainerBuilder::new()
 
 ## Error Handling
 
-```rust,ignore
+```rust
 // Panics if not found
 let db: Arc<Database> = injector.resolve();
 
@@ -180,7 +180,7 @@ match injector.try_resolve::<Database>() {
 
 ### Configuration
 
-```rust,ignore
+```rust
 #[derive(Clone)]
 struct AppConfig {
     db_url: String,
@@ -203,7 +203,7 @@ let injector = ContainerBuilder::new()
 
 ### Application Initializer
 
-```rust,ignore
+```rust
 struct AppInitializer {
     db: Arc<Database>,
     cache: Arc<Cache>,
@@ -236,7 +236,7 @@ injector.create::<AppInitializer>().await?;
 
 ## Testing
 
-```rust,ignore
+```rust
 #[tokio::test]
 async fn test_user_service() {
     let injector = ContainerBuilder::new()
@@ -252,7 +252,7 @@ async fn test_user_service() {
 
 ## Container Utilities
 
-```rust,ignore
+```rust
 container.contains::<Database>()  // Check if registered
 container.len()                    // Number of services
 container.is_empty()              // Check if empty
