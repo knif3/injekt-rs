@@ -93,7 +93,6 @@ pub trait Injectable: Send + Sync + 'static {
     ///
     /// This should only contain async setup logic (connections, validations, etc.),
     /// not dependency resolution.
-    // async fn initialize(&self) -> Result<Self::Output, Self::Error>;
     fn initialize(&self) -> impl std::future::Future<Output = Result<Self::Output, Self::Error>> + Send;
 }
 
@@ -142,7 +141,6 @@ pub trait LazyInjectable: Send + Sync + 'static {
     /// Performs async initialization after construction.
     ///
     /// Can use the stored container reference to resolve dependencies dynamically.
-    // async fn initialize(&self) -> Result<Self::Output, Self::Error>;
     fn initialize(&self) -> impl std::future::Future<Output = Result<Self::Output, Self::Error>> + Send;
 }
 
