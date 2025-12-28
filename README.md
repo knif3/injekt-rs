@@ -15,7 +15,7 @@ A lightweight, thread-safe dependency injection container with async initializat
 ```toml
 [dependencies]
 parking_lot = "0.12"
-tokio = { version = "1", features = ["full"] }
+tokio = { version = "1", features = ["rt", "macros"] }
 ```
 
 ## Quick Start
