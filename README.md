@@ -1,4 +1,4 @@
-# Dependency Injection Container for Rust
+# Injekt - Dependency Injection Container for Rust
 
 A lightweight, thread-safe dependency injection container with async initialization and lazy resolution.
 
